@@ -16,36 +16,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(180deg, #989ba9 60%, #23242d 100%);
+      background: linear-gradient(180deg, #000000 60%, #0e0000 100%);
       position: relative;
       filter: contrast(1.2) brightness(0.97) saturate(1.2) blur(0.2px);
-    }
-    .jpeg-fake {
-      pointer-events: none;
-      position: fixed;
-      inset: 0;
-      z-index: 2;
-      background: url('https://i.imgur.com/Hs1eebg.jpg');
-      opacity: 0.18;
-      filter: blur(1.2px) contrast(1.5) brightness(0.9) grayscale(0.36) saturate(1.1);
-      mix-blend-mode: lighten;
-      image-rendering: pixelated;
-    }
-    .glitch {
-      pointer-events: none;
-      position: fixed;
-      inset: 0;
-      z-index: 3;
-      background: url('https://i.imgur.com/Io7bFQw.png');
-      opacity: 0.07;
-      filter: blur(0.7px) contrast(1.2) brightness(1.08) grayscale(0.4) saturate(1.1);
-      mix-blend-mode: hard-light;
-      image-rendering: pixelated;
-      animation: glichy 0.41s infinite steps(2);
-    }
-    @keyframes glichy {
-      40% { filter: blur(0.6px) contrast(1.6) brightness(1.05);}
-      80% { filter: blur(1.2px) contrast(1.1) brightness(1.2);}
     }
     .keypad-escuro {
       z-index: 10;
