@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Keypad Escuro JPEG Glitch + Som</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: #050506;
+      overflow: hidden;
+    }
+    body {
+      width: 100vw; height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(180deg, #989ba9 60%, #23242d 100%);
+      position: relative;
+      filter: contrast(1.2) brightness(0.97) saturate(1.2) blur(0.2px);
+    }
+    .jpeg-fake {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      background: url('https://i.imgur.com/Hs1eebg.jpg');
+      opacity: 0.18;
+      filter: blur(1.2px) contrast(1.5) brightness(0.9) grayscale(0.36) saturate(1.1);
+      mix-blend-mode: lighten;
+      image-rendering: pixelated;
+    }
+    .glitch {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      z-index: 3;
+      background: url('https://i.imgur.com/Io7bFQw.png');
+      opacity: 0.07;
+      filter: blur(0.7px) contrast(1.2) brightness(1.08) grayscale(0.4) saturate(1.1);
+      mix-blend-mode: hard-light;
+      image-rendering: pixelated;
+      animation: glichy 0.41s infinite steps(2);
+    }
+    @keyframes glichy {
+      40% { filter: blur(0.6px) contrast(1.6) brightness(1.05);}
+      80% { filter: blur(1.2px) contrast(1.1) brightness(1.2);}
+    }
+    .keypad-escuro {
+      z-index: 10;
+      position: relative;
+      width: 330px;
+      padding: 30px 21px 30px 21px;
+      border-radius: 24px;
+      background: linear-gradient(155deg, #b9bcc7 70%, #878a97 100%);
+      box-shadow: 0 0 70px 18px #000e, 0 0 0 8px #222d inset;
+      border: 4px solid #35373b;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      filter: blur(0.1px) contrast(1.25) brightness(0.98) grayscale(0.13) saturate(1.2);
+      image-rendering: pixelated;
+      backdrop-filter: blur(1.2px) contrast(1.17);
+      overflow: hidden;
+      background-blend-mode: hard-light;
+      transition: background 0.2s;
+    }
+    .display-escuro {
+      width: 88%;
+      margin-bottom: 28px;
+      height: 38px;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #23242d 0%, #3a3c48 60%, #13141b 100%);
+      color: #e0e0e0;
+      font-family: 'Arial Black', monospace, sans-serif;
+      font-size: 2.1rem;
+      letter-spacing: 5px;
+      text-align: center;
+      border: 2px solid #393b40;
+      box-shadow: 0 0 14px #000, 0 2px 8px #252525a4 inset;
+      filter: blur(0.1px) contrast(1.14) brightness(1.04) grayscale(0.09) saturate(1.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      user-select: none;
+      text-shadow: 1px 1px 8px #fff3, 0 1px 0 #fff2;
+    }
+    .keypad-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 74px);
+      grid-template-rows: repeat(4, 56px);
+      gap: 15px 11px;
+      justify-content: center;
+      align-content: center;
+    }
+    .keypad-btn {
+      width: 66px;
+      height: 52px;
+      background: linear-gradient(120deg, #e7e9ef 0%, #d7dbe6 70%, #bfc3cc 100%);
+      border: 3px solid #393b40;
+      border-radius: 13px;
+      color: #17181b;
+      font-family: 'Arial Black', monospace, sans-serif;
+      font-size: 2.2rem;
+      font-weight: bold;
+      box-shadow: 0 4px 25px #000a, 0 1px 0 #fff2, 0 0 0 3px #d2dae6 inset;
+      filter: blur(0.2px) contrast(1.47) brightness(1.13) grayscale(0.08) saturate(1.4);
+      text-shadow: 0 0 6px #fff, 0 2px 4px #fff7, 0 1px 0 #fff8;
+      transition: filter 0.11s, background 0.13s, color 0.13s;
+      cursor: pointer;
+      outline: none;
+      user-select: none;
+      image-rendering: pixelated;
+    }
+    .keypad-btn:active {
+      background: #bfc3cc;
+      color: #fff;
+      filter: blur(0.5px) contrast(2.1) brightness(1.23);
+      text-shadow: 0 0 14px #fff, 0 2px 18px #fff, 0 1px 0 #fff8;
+    }
+    .keypad-btn.special {
+      background: linear-gradient(120deg, #e0e9f2 15%, #7eb0e8 80%, #bfc3cc 100%);
+      border-color: #497bf3;
+      color: #1759c4;
+      filter: blur(0.13px) contrast(1.5) brightness(1.1);
+      text-shadow: 0 0 8px #fff, 0 2px 4px #73baff, 0 1px 0 #fff8;
+    }
+    @media (max-width: 500px) {
+      .keypad-escuro { width: 99vw; }
+      .keypad-grid { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(4, 1fr);}
+      .keypad-btn { width: 25vw; height: 14vw; min-width: 33px; min-height: 32px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="jpeg-fake"></div>
+  <div class="glitch"></div>
+  <!-- Sons embedados; usando links do Vocaroo -->
+  <audio id="clickSound" src="https://media.vocaroo.com/mp3/1eQ0vWdUe5BU" preload="auto"></audio>
+  <audio id="errorSound" src="https://media.vocaroo.com/mp3/16i4QsjkmiYa" preload="auto"></audio>
+  <div class="keypad-escuro">
+    <div class="display-escuro" id="display"></div>
+    <div class="keypad-grid">
+      <button class="keypad-btn" data-key="1">1</button>
+      <button class="keypad-btn" data-key="2">2</button>
+      <button class="keypad-btn" data-key="3">3</button>
+      <button class="keypad-btn" data-key="4">4</button>
+      <button class="keypad-btn" data-key="5">5</button>
+      <button class="keypad-btn" data-key="6">6</button>
+      <button class="keypad-btn" data-key="7">7</button>
+      <button class="keypad-btn" data-key="8">8</button>
+      <button class="keypad-btn" data-key="9">9</button>
+      <button class="keypad-btn special" data-key="*">*</button>
+      <button class="keypad-btn" data-key="0">0</button>
+      <button class="keypad-btn special" data-key="#">#</button>
+    </div>
+  </div>
+  <script>
+    // Sons usando links do Vocaroo
+    const clickSound = document.getElementById('clickSound');
+    const errorSound = document.getElementById('errorSound');
+
+    // Força o áudio a ser tocado só após interação (para autoplay policy)
+    let userInteracted = false;
+    function tryPlay(sound) {
+      if (sound && sound.readyState >= 2) {
+        sound.currentTime = 0;
+        sound.play().catch(()=>{});
+      }
+    }
+    window.addEventListener('pointerdown', function onceUser() {
+      userInteracted = true;
+      tryPlay(clickSound);
+      window.removeEventListener('pointerdown', onceUser);
+    });
+
+    // Keypad funcional
+    const CORRECT_CODE = "29657";
+    let input = "";
+    const display = document.getElementById("display");
+    const buttons = document.querySelectorAll(".keypad-btn");
+    function updateDisplay() {
+      display.innerHTML = '';
+      for(let i=0; i<input.length; i++) {
+        const span = document.createElement('span');
+        span.textContent = '•';
+        span.style.margin = '0 4px';
+        span.style.fontSize = '1.8em';
+        span.style.filter = 'blur(0.5px) contrast(1.4)';
+        display.appendChild(span);
+      }
+    }
+    function clearInput() { input = ""; updateDisplay(); }
+    function errorAnim() {
+      display.style.background = "#24262b";
+      display.style.color = "#fff";
+      setTimeout(() => {
+        display.style.background = "linear-gradient(90deg, #23242d 0%, #3a3c48 60%, #13141b 100%)";
+        display.style.color = "#e0e0e0";
+      }, 300);
+    }
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (!userInteracted) {
+          tryPlay(clickSound);
+          userInteracted = true;
+        }
+        const key = btn.getAttribute("data-key");
+        if (key === "*") { clearInput(); tryPlay(clickSound); return; }
+        if (key === "#") {
+          if (input === CORRECT_CODE) {
+            display.style.background = "#30ff3b";
+            display.style.color = "#000";
+            tryPlay(clickSound);
+            setTimeout(() => { window.location.href = "pc.html"; }, 700);
+          } else {
+            tryPlay(errorSound);
+            errorAnim();
+            clearInput();
+          }
+          return;
+        }
+        if (!/^[0-9]$/.test(key)) return;
+        if (input.length >= 8) return;
+        input += key;
+        tryPlay(clickSound);
+        updateDisplay();
+      });
+    });
+    updateDisplay();
+  </script>
+</body>
+</html>

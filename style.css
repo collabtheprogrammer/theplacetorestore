@@ -1,0 +1,92 @@
+body {
+  background: #000;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.keypad-wrapper {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.keypad-img {
+  width: 100%;
+  height: 100%;
+  user-select: none;
+}
+
+.keypad-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: grid;
+  grid-template-areas:
+    "k1 k2 k3"
+    "k4 k5 k6"
+    "k7 k8 k9"
+    "kstar k0 khash";
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: repeat(4, 1fr);
+  gap: 18px 20px;
+  padding: 38px 36px 38px 36px;
+  pointer-events: none;
+}
+
+.keypad-overlay button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 80px;
+  height: 60px;
+  pointer-events: auto;
+}
+
+.display {
+  margin-top: 25px;
+  background: #222;
+  color: #0f0;
+  font-size: 2rem;
+  font-family: 'Consolas', monospace;
+  padding: 12px 32px;
+  border-radius: 8px;
+  min-width: 240px;
+  text-align: center;
+  letter-spacing: 8px;
+  box-shadow: 0 2px 16px #000c inset;
+  user-select: none;
+}
+
+.msg {
+  margin-top: 10px;
+  color: #f22;
+  font-family: 'Consolas', monospace;
+  min-height: 1.5em;
+  text-align: center;
+}
+
+@media (max-width: 500px) {
+  .keypad-wrapper {
+    width: 95vw;
+    height: 95vw;
+    max-width: 350px;
+    max-height: 350px;
+  }
+  .display {
+    font-size: 1.2rem;
+    min-width: 120px;
+    padding: 8px 12px;
+  }
+}
